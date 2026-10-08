@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelorus Vision — Precision Deck Telemetry & Dispute-Free Port Documentation</title>
+<meta name="description" content="Industrial edge-AI deck cameras and multimodal reasoning that generate audit-proof, BIMCO-aligned Statements of Facts.">
+<style>
+:root{--bg:#06121f;--bg2:#0a1b2d;--card:#0e2338;--line:#1c3a57;--tx:#e6eef7;--mut:#8fa6bd;--acc:#2fd0c4;--acc2:#4f9dff;--warn:#f5b84a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px}
+.eyebrow{color:var(--acc);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.lead{color:var(--mut);max-width:680px;font-size:18px;margin-bottom:48px}
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:rgba(6,18,31,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.links{display:flex;gap:28px;font-size:14px;color:var(--mut)}
+.links a:hover{color:var(--tx)}
+.cta{border:1px solid var(--acc);color:var(--acc);padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;white-space:nowrap}
+.cta:hover{background:var(--acc);color:var(--bg)}
+/* hero */
+.hero{padding:88px 0 96px;background:radial-gradient(ellipse at 80% 0%,rgba(79,157,255,.16),transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(47,208,196,.1),transparent 50%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.badge{display:inline-block;border:1px solid var(--line);background:var(--bg2);color:var(--acc);font-size:12.5px;padding:6px 14px;border-radius:99px;margin-bottom:24px;font-weight:600}
+.hero h1{font-size:clamp(34px,5vw,56px);margin-bottom:20px}
+.hero h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut);font-size:18px;max-width:560px}
+.tagline{margin-top:24px;font-size:14px;color:var(--tx);border-left:3px solid var(--acc);padding-left:12px}
+.tl{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.tl-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:13px;color:var(--mut)}
+.live{color:var(--acc);font-weight:600}.live:before{content:"";display:inline-block;width:8px;height:8px;background:var(--acc);border-radius:50%;margin-right:6px;animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.3}}
+.ev{display:grid;grid-template-columns:70px 14px 1fr;gap:12px;padding:14px 18px;font-size:14px;position:relative}
+.ev time{font-family:ui-monospace,Consolas,monospace;color:var(--mut);font-size:12.5px;padding-top:2px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--acc);margin-top:6px;position:relative}
+.dot.w{background:var(--warn)}.dot.b{background:var(--acc2)}
+.ev:not(:last-child) .dot:after{content:"";position:absolute;left:4px;top:12px;width:2px;height:44px;background:var(--line)}
+.ev small{display:block;color:var(--mut);font-size:12px}
+.tl-foot{padding:12px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--mut);font-family:ui-monospace,Consolas,monospace}
+/* cards */
+.grid{display:grid;gap:20px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px}
+.card h3{font-size:19px;margin-bottom:10px}.card p{color:var(--mut);font-size:15px}
+.ico{width:40px;height:40px;border-radius:10px;background:rgba(47,208,196,.12);color:var(--acc);display:grid;place-items:center;margin-bottom:16px;font-weight:700}
+.alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{font-size:40px;font-weight:700;color:var(--warn);letter-spacing:-.02em}
+/* architecture */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative}
+.step:before{counter-increment:s;content:"0" counter(s);color:var(--acc);font-family:ui-monospace,Consolas,monospace;font-size:13px}
+.step h3{font-size:17px;margin:8px 0}.step p{color:var(--mut);font-size:14px}
+.step:not(:last-child):after{content:"→";position:absolute;right:-14px;top:50%;color:var(--acc);font-size:18px;z-index:1}
+ul.chk{list-style:none}ul.chk li{padding-left:26px;position:relative;margin-bottom:10px;color:var(--mut);font-size:15px}
+ul.chk li:before{content:"✓";position:absolute;left:0;color:var(--acc);font-weight:700}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--mut);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:900px){.hero .wrap,.g2,.g3,.flow{grid-template-columns:1fr}.links{display:none}.step:after{display:none!important}section{padding:64px 0}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="#overview" class="logo" aria-label="Pelorus Vision">
+    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="#2fd0c4" stroke-width="2"><circle cx="16" cy="16" r="13"/><path d="M16 5l4 11-4 11-4-11z" fill="#2fd0c4" fill-opacity=".25"/><circle cx="16" cy="16" r="2" fill="#2fd0c4"/></svg>
+    Pelorus Vision
+  </a>
+  <div class="links">
+    <a href="#overview">Overview</a><a href="#capabilities">Capabilities</a><a href="#architecture">System Architecture</a><a href="#compliance">Compliance</a><a href="#contact">Contact</a>
+  </div>
+  <a class="cta" href="mailto:contact@pelorusvision.com">Contact Team</a>
+</div></nav>
+
+<header class="hero" id="overview"><div class="wrap">
+  <div>
+    <span class="badge">Operational Technology Overview • BIMCO SOF Aligned</span>
+    <h1>Autonomous Visual Watchkeeping for <span>Paperless Deck Operations</span></h1>
+    <p>Industrial edge computer vision and multimodal AI observe cargo handling continuously, eliminating laytime and demurrage disputes by turning every crane cycle, hatch movement and weather stoppage into a 100% verifiable port log.</p>
+    <p class="tagline">Precision Deck Telemetry &amp; Dispute-Free Port Documentation</p>
+  </div>
+  <div class="tl" aria-label="Sample real-time event telemetry timeline">
+    <div class="tl-head"><span>MV Example · Berth 14 · Event Telemetry</span><span class="live">LIVE</span></div>
+    <div class="ev"><time>08:12:04</time><i class="dot b"></i><div>Hatch #3 Secured<small>Cover closed · confidence 99.2%</small></div></div>
+    <div class="ev"><time>09:47:31</time><i class="dot w"></i><div>Crane #2 Cycle Interrupted [Rain]<small>Weather stoppage opened · precipitation detected</small></div></div>
+    <div class="ev"><time>10:05:18</time><i class="dot"></i><div>Manifold Connected<small>Loading arm coupled · Port side</small></div></div>
+    <div class="ev"><time>10:22:56</time><i class="dot"></i><div>Crane #2 Cycle Resumed<small>Stoppage closed · duration 35m 25s</small></div></div>
+    <div class="tl-foot">sha256:9f3a…c41e · signed · SOF entry #0147</div>
+  </div>
+</div></header>
+
+<section class="alt" id="problem"><div class="wrap">
+  <div class="eyebrow">The Industry Problem</div>
+  <h2>The operational gap between the deck and the claim</h2>
+  <p class="lead">Laytime is decided by minutes, yet the record of those minutes is still assembled by hand under time pressure.</p>
+  <div class="grid g3">
+    <div class="card"><div class="ico">1</div><h3>Handwritten paper logbooks</h3><p>Entries are transcribed after the fact, are easily illegible or incomplete, and can't be independently verified.</p></div>
+    <div class="card"><div class="ico">2</div><h3>Subjective crew timing</h3><p>Officers on watch juggle cargo, safety and paperwork. Start and stop times differ between ship, terminal and agent.</p></div>
+    <div class="card"><div class="ico">3</div><h3>Multi-million-dollar claims</h3><p>Demurrage and despatch disputes hinge on contested timelines, often settled months later with weak evidence.</p></div>
+    <div class="card"><div class="ico">4</div><h3>Strenuous PSC &amp; vetting scrutiny</h3><p>Port State Control and vetting inspections demand consistent, traceable records of cargo and deck operations.</p></div>
+    <div class="card"><div class="ico">5</div><h3>Weather stoppage ambiguity</h3><p>Whether rain genuinely halted work, and for how long, is the most contested line in many Statements of Facts.</p></div>
+    <div class="card"><div class="stat">Minutes = $$$</div><p>Every unrecorded or disputed minute carries direct financial exposure for owners, charterers and operators.</p></div>
+  </div>
+</div></section>
+
+<section id="capabilities"><div class="wrap">
+  <div class="eyebrow">Capabilities</div>
+  <h2>Every deck event, observed and timestamped</h2>
+  <p class="lead">Continuous visual monitoring replaces memory and manual notes with objective telemetry.</p>
+  <div class="grid g3">
+    <div class="card"><div class="ico">⚙</div><h3>Crane cycle tracking</h3><p>Detects lift, slew and idle states to measure cycle times, gaps and interruptions per crane.</p></div>
+    <div class="card"><div class="ico">▭</div><h3>Hatch cover operations</h3><p>Recognises opening, closing and secured states for each hatch, with the evidence frame attached.</p></div>
+    <div class="card"><div class="ico">☂</div><h3>Weather stoppage detection</h3><p>Correlates visual precipitation cues with work status to document justified stoppages objectively.</p></div>
+    <div class="card"><div class="ico">⛓</div><h3>Manifold &amp; hose events</h3><p>Captures connection and disconnection milestones for liquid and gas transfer operations.</p></div>
+    <div class="card"><div class="ico">✎</div><h3>Auto-generated SOF</h3><p>Multimodal reasoning composes a structured, narrative-ready Statement of Facts from validated events.</p></div>
+    <div class="card"><div class="ico">◈</div><h3>Digital deck logs</h3><p>Searchable, exportable records that replace paper logbooks for paperless operations.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="architecture"><div class="wrap">
+  <div class="eyebrow">System Architecture</div>
+  <h2>Edge perception, cloud-grade reasoning</h2>
+  <p class="lead">Inference runs on the vessel so it keeps working with intermittent connectivity. Only structured events and evidence sync ashore.</p>
+  <div class="flow">
+    <div class="step"><h3>Industrial deck cameras</h3><p>Marine-grade, IP-rated units covering cranes, hatches and manifolds day and night.</p></div>
+    <div class="step"><h3>Edge AI node</h3><p>Onboard GPU inference detects and classifies events in real time with no video streaming required.</p></div>
+    <div class="step"><h3>Multimodal reasoning</h3><p>Vision-language models verify context, resolve ambiguity and draft human-readable log entries.</p></div>
+    <div class="step"><h3>Tamper-evident ledger</h3><p>Events are hashed, signed and synced to produce audit-proof SOFs and digital logs.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:32px">
+    <div class="card"><h3>Designed for the deck</h3><ul class="chk"><li>Offline-first operation with store-and-forward sync</li><li>Low-bandwidth: events and key frames, not continuous video</li><li>Rugged hardware for salt, vibration and temperature extremes</li></ul></div>
+    <div class="card"><h3>Built for trust</h3><ul class="chk"><li>Cryptographic hashing and signing of every record</li><li>Evidence frame linked to each timeline entry</li><li>Human review and override with full audit trail</li></ul></div>
+  </div>
+</div></section>
+
+<section id="compliance"><div class="wrap">
+  <div class="eyebrow">Compliance</div>
+  <h2>Aligned with industry documentation standards</h2>
+  <p class="lead">Outputs follow the structure and terminology of the BIMCO Statement of Facts so they fit existing charterparty workflows.</p>
+  <div class="grid g3">
+    <div class="card"><h3>BIMCO SOF aligned</h3><p>Event naming and sequencing map to standard SOF entries used in laytime calculations.</p></div>
+    <div class="card"><h3>Audit-ready records</h3><p>Immutable timestamps with attached visual evidence support claims, defence and PSC or vetting review.</p></div>
+    <div class="card"><h3>Data governance</h3><p>Configurable retention, access controls and privacy-aware handling of crew imagery.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="contact"><div class="wrap" style="text-align:center">
+  <div class="eyebrow">Contact</div>
+  <h2>Discuss the technology with our team</h2>
+  <p class="lead" style="margin-inline:auto">For technical questions or documentation requests, reach us directly by email.</p>
+  <a class="cta" href="mailto:contact@pelorusvision.com" style="display:inline-block">contact@pelorusvision.com</a>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 Pelorus Vision. All rights reserved.</span><span>Precision Deck Telemetry &amp; Dispute-Free Port Documentation</span></div></footer>
+
+</body>
+</html>
